@@ -107,39 +107,6 @@ def main():
      file_name='點擊排行榜.csv',
      mime='text/csv',
      )
-    #%%
-    st.markdown("<h4 style='text-align: center; background-color: #e6f2ff; padding: 10px;'>大稻埕點擊數據</h4>", unsafe_allow_html=True)
-
-    #backed
-    select_coors = st.multiselect(
-        label="選擇點擊物件查詢場域",
-        options=coor_list,
-        default="大稻埕_貨櫃市集-1貓"
-        )
-    default_start_date = now -timedelta(days=7)
-    start_date_click = st.date_input(label='選擇點擊事件查詢日期',value = default_start_date) 
-    end_date_click = st.date_input(label='選擇點擊事件查詢日期',value = now) 
-    scenes_list = get_scenes(df_coor,select_coors)
-    df_obj_click_scene = get_GA_data(df_arobjs,start_date_click,end_date_click,scenes_list)
-    df_obj_click_scene = df_obj_click_scene.set_index('物件ID')
-    csv_scan_coor_scene_city = csv_download(df_obj_click_scene)
-    
-    #fronted
-    #col_click , col_raw = st.columns(2)
-    #with col_click:
-    #st.markdown("<h5 style='text-align: left; padding: 10px;'>物件點擊排行榜</h5>", unsafe_allow_html=True)
-    st.table(
-        data = df_obj_click_scene,
-        )
-    st.download_button(
-     label = "下載物件點擊排行榜csv檔",
-     data = csv_scan_coor_scene_city,
-     file_name='點擊排行榜.csv',
-     mime='text/csv',
-     )
-
-
-
     st.markdown("<h4 style='text-align: center; background-color: #e6f2ff; padding: 10px;'>大稻埕每日數據</h4>", unsafe_allow_html=True)
     
     #%% 按小時統計
@@ -178,9 +145,39 @@ def main():
     start_date = selected_date
     end_date = selected_date
     csv_24hour = csv_download(df_24hours)
-    
 
     
+    #%%
+    st.markdown("<h4 style='text-align: center; background-color: #e6f2ff; padding: 10px;'>大稻埕點擊數據</h4>", unsafe_allow_html=True)
+
+    #backed
+    select_coors = st.multiselect(
+        label="選擇點擊物件查詢場域",
+        options=coor_list,
+        default="大稻埕_貨櫃市集-1貓"
+        )
+    default_start_date = now -timedelta(days=7)
+    start_date_click = st.date_input(label='選擇點擊事件查詢日期',value = default_start_date) 
+    end_date_click = st.date_input(label='選擇點擊事件查詢日期',value = now) 
+    scenes_list = get_scenes(df_coor,select_coors)
+    df_obj_click_scene = get_GA_data(df_arobjs,start_date_click,end_date_click,scenes_list)
+    df_obj_click_scene = df_obj_click_scene.set_index('物件ID')
+    csv_scan_coor_scene_city = csv_download(df_obj_click_scene)
+    
+    #fronted
+    #col_click , col_raw = st.columns(2)
+    #with col_click:
+    #st.markdown("<h5 style='text-align: left; padding: 10px;'>物件點擊排行榜</h5>", unsafe_allow_html=True)
+    st.table(
+        data = df_obj_click_scene,
+        )
+    st.download_button(
+     label = "下載物件點擊排行榜csv檔",
+     data = csv_scan_coor_scene_city,
+     file_name='點擊排行榜.csv',
+     mime='text/csv',
+     )
+        
 #%% Web App 測試 (檢視成果)  ============================================================================= ##    
 if __name__ == "__main__":
     main()
