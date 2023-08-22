@@ -76,7 +76,7 @@ def main():
     daily_scan_counts.fillna(0, inplace=True)
     # 將索引（日期）格式化為 "m/d" 格式
     daily_scan_counts.index = daily_scan_counts.index.strftime('%m/%d %a')
-
+    daily_scan_counts = daily_scan_counts.round().astype(int)
 
     # 創建熱力圖數據
     heat_data = [[row['緯度'], row['經度'], row['count']] for index, row in coor_count.iterrows()]
