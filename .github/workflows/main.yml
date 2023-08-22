@@ -1,15 +1,33 @@
-name: Run Python Tests
+name: Deploy Streamlit App
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Check env variable
-      run: echo Variable is $GOOGLE_APPLICATION_CREDENTIALS_CONTENT
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Write Google Credentials to File
+      run: echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_CONTENT }}" > ga_api.json
       env:
         GOOGLE_APPLICATION_CREDENTIALS_CONTENT: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_CONTENT }}
 
+    - name: Install Dependencies
+      run: |
+        pip install streamlit
+        # 添加其他依赖项
+
+    - name: Deploy to Streamlit
+      # 此处根据您的部署方式进行调整。以下仅为示例。
+      run: streamlit run main.py
