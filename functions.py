@@ -5,7 +5,17 @@ import os
 import json
 from google.analytics.data import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import RunReportRequest
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'ga_api.json'
+
+# 從環境變數中取得JSON內容
+json_content = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_CONTENT')
+
+if json_content:
+    with open('ga_api_temp.json', 'w') as json_file:
+        json_file.write(json_content)
+    
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'ga_api_temp.json'
+else:
+    print("未能從環境變數中取得GA資料")
 
 #%% 設定日期範圍
 def get_date_data():
