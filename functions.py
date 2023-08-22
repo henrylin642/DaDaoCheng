@@ -154,4 +154,6 @@ def get_GA_data(df_arobjs,start_date,end_date,scenes):
     df_obj_click_scene = pd.DataFrame({'物件ID': obj_id_lst,'物件名稱': obj_name_lst,'點擊量': click_count_lst,'物件場景': obj_scene_lst})
     df_obj_click_scene = df_obj_click_scene.dropna(subset=['物件名稱'])
     df_obj_click_scene = df_obj_click_scene[df_obj_click_scene['物件場景'].isin(scenes)]
+    if os.path.exists('ga_api_temp.json'):
+        os.remove('ga_api_temp.json')
     return df_obj_click_scene
