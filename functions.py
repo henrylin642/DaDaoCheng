@@ -2,10 +2,12 @@ import pytz
 from datetime import datetime, timedelta, date
 import pandas as pd
 import os
+import json
 from google.analytics.data import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import RunReportRequest
 
 # 從環境變量中獲取憑據內容
+print(os.environ['GOOGLE_APPLICATION_CREDENTIALS_CONTENT'])
 google_credentials_content = os.environ['GOOGLE_APPLICATION_CREDENTIALS_CONTENT']
 
 # 將憑據寫入臨時文件
