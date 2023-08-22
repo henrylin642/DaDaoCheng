@@ -11,5 +11,8 @@ jieba==0.42.1
 requests==2.29.0
 google-analytics-data==0.17.0
 pytz==2022.7
-github
+geopandas==2.3.0
+folium==0.14.0
+geopy==2.3.0
+shapely==2.0.1
 datetime
