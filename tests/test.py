@@ -1,6 +1,8 @@
 # tests/test.py
 import unittest
 import calculator
+import os
+google_credentials_content = os.environ['GOOGLE_APPLICATION_CREDENTIALS_CONTENT']
 
 class TestCalculator(unittest.TestCase):
 
