@@ -1,0 +1,15 @@
+name: My CI Workflow
+
+on: [push]
+
+jobs:
+  read_GA:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run Python script
+      run: python main.py
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS_CONTENT: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_CONTENT }}
