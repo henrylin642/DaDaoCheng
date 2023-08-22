@@ -8,6 +8,11 @@ from google.analytics.data_v1beta.types import RunReportRequest
 # 從環境變量中獲取憑據內容
 google_credentials_content = os.environ['GOOGLE_APPLICATION_CREDENTIALS_CONTENT']
 
+if google_credentials_content:
+    pass
+else:
+    print("enviroment variable is not set.")
+
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'data/ga_api.json'
 
 # 將憑據寫入臨時文件
