@@ -5,17 +5,7 @@ import os
 import json
 from google.analytics.data import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import RunReportRequest
-
-# 從環境變量中獲取憑據內容
-google_credentials_content = os.environ['GOOGLE_APPLICATION_CREDENTIALS_CONTENT']
-
-# 將憑據寫入臨時文件
-with open('temp_credentials.json', 'w') as file:
-    file.write(google_credentials_content)
-
-# 設置環境變量指向臨時文件
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'temp_credentials.json'
-
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'ga_api.json'
 
 #%% 設定日期範圍
 def get_date_data():
