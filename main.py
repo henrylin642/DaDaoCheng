@@ -100,7 +100,7 @@ def main():
     folium_static(m)
     daily_scan_counts_t = daily_scan_counts.transpose()
     csv_daily_scan_counts_t = csv_download(daily_scan_counts_t)
-    st.dataframe(daily_scan_counts_t)
+    st.table(daily_scan_counts_t)
     st.download_button(
      label = "下載物件掃描排行榜csv檔",
      data = csv_daily_scan_counts_t,
