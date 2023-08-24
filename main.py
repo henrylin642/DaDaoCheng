@@ -32,7 +32,7 @@ def main():
     #%% 熱力圖
     
     ## back
-    coor_list = ['大稻埕_貨櫃市集-1貓','大稻埕_貨櫃市集-3貓','大稻埕_迪化街-1','大稻埕_迪化街-2','大稻埕_迪化街-3','華英街-中']
+    coor_list = ['大稻埕_貨櫃市集-1貓','大稻埕_貨櫃市集-3貓','大稻埕_迪化街-1','大稻埕_迪化街-2','大稻埕_迪化街-3','華英街-中','華陰街-太原路']
     filtered_raw_df = df_scan_coor_scene_city[df_scan_coor_scene_city['coor_name'].isin(coor_list)]
     # 創建地圖
     m = folium.Map(location=[25.056779461206286, 121.50759925694413], zoom_start=15)
